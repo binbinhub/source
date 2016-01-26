@@ -1,11 +1,9 @@
 ---
 title: 2016 书单 (不定期添加)
 date: 2016-01-12 14:08:22
-categories: 只与我有关|Better Me
-tags: [plan, self, book]
+categories: 看世界|World Eye
+tags: [plan, book]
 ---
-### 引子
-
 说是引子，其实就是每次开始前的一些废话。
 @老猪，没想到我也会有一个在屁股后面催稿的粉丝，哈哈哈哈，你就当我自作多情好了。
 既然是真的想要做一些事，不想有计划也会有一些计划。
