@@ -23,11 +23,11 @@ Create a new draft under the directory `source/_drafts`.
 $ hexo new draft <title>
 ```
 After editing the drafts, use `--draft` parameter to preview. 
-```bash
+``` bash
 $ hexo server --draft
 ```
 After being satisfied with the draft, use `publish` command to move the `.md` file to the directory `source/_posts`. Then you can `generate` and `deploy`. 
-```bash
+``` bash
 $ hexo publish <filename>
 ```
 ### Create a new post
