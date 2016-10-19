@@ -1,5 +1,5 @@
 ---
-title: Install Operation System Ubuntu and Some Softwares
+title: Install Operation System Ubuntu 14.04 and Some Softwares
 categories: '程序媛|Coding'
 tags:
   - ubuntu
@@ -159,17 +159,17 @@ sudo apt-get install unzip python3.5-dev libaio-dev
 
 ## [Download Oracle Client](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html)
 Login oracle website and download: 
-+ instantclient-basic-linux.x64-11.2.0.4.0.zip  
-+ instantclient-sdk-linux.x64-11.2.0.4.0.zip  
-+ instantclient-sqlplus-linux.x64-11.2.0.4.0.zip  
++ instantclient-basic-linux.x64-12.1.0.2.0.zip  
++ instantclient-sdk-linux.x64-12.1.0.2.0.zip  
++ instantclient-sqlplus-linux.x64-12.1.0.2.0.zip  
 
 ## Unzip oracle client
 ```bash
 cd
-mkdir tools
-unzip instantclient-basic-linux.x64-12.1.0.4.0.zip -d tools
-unzip instantclient-sdk-linux.x64-12.1.0.4.0.zip -d tools
-unzip instantclient-sqlplus-linux.x64-12.1.0.4.0.zip -d tools
+mkdir cx_Oracle
+unzip instantclient-basic-linux.x64-12.1.0.2.0.zip -d cx_Oracle
+unzip instantclient-sdk-linux.x64-12.1.0.2.0.zip -d cx_Oracle
+unzip instantclient-sqlplus-linux.x64-12.1.0.2.0.zip -d cx_Oracle
 ```
 ## Set ORACLE_HOME location
 ```bash
@@ -177,13 +177,19 @@ sudo gedit ~/.bashrc
 ```
 然后添加以下语句到`~/.bashrc`，然后保存。这是告诉安装程序oracle安装文件的位置，若后面出现`cannot locate oracle installation`的提示，一定是这里没有设置好。注意：ORACLE_HOME 要指向绝对路径。
 ```bash
-export ORACLE_HOME=/home/katherine/tools/instantclient_12_1
+# cx_Oracle
+export ORACLE_HOME=/home/katherine/cx_Oracle/instantclient_12_1
 export LD_LIBRARY_PATH=$ORACLE_HOME:$LD_LIBRARY_PATH
 export PATH=${PATH}:${ORACLE_HOME}
 ```
+记得更新配置：
+```bash
+source ~/.bashrc
+mypy35
+```
 对以下文件建立软链接。
 ```bash
-cd tools/instantclient_12_1
+cd cx_Oracle/instantclient_12_1
 sudo ln -sf libclntsh.so.12.1 libclntsh.so
 sudo ln -sf libclntshcore.so.12.1 libclntshcore.so
 sudo ln -sf libocci.so.12.1 libocci.so
@@ -216,7 +222,7 @@ sudo apt-get install libpq-dev
 ```
 
 ### Configure PYTHONPATH to PostgreSQL Environment
-Add `PYTHONPATH='/home/katherine/Documents/Coding/jfds/src/:/home/katherine/venv/py352/lib/python3.5/site-packages'` to `/etc/postgresql/9.5/main/environment`. 
+Add `PYTHONPATH='/home/katherine/Documents/Coding/jfds/src:/home/katherine/venv/py352/lib/python3.5/site-packages'` to `/etc/postgresql/9.5/main/environment`. 
 
 Then run:
 ```bash
@@ -259,10 +265,10 @@ The initial settings have been done.
 ## plpython3u
 
 ```bash
-sudo gedit /etc/postgresql/9.3/main/environment
+sudo gedit /etc/postgresql/9.5/main/environment
 ```
 ```
-PYTHONPATH='/home/katherine/venv/py34/lib/python3.4/site-packages'
+PYTHONPATH='/home/katherine/Documents/Coding/jfds/src:/home/katherine/venv/py35/lib/python3.5/site-packages'
 ```
 ```bash
 sudo apt-get install postgresql-plpython3
