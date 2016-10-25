@@ -137,4 +137,5 @@ sudo ldconfig
 
 Then log on `postgreSQL` and run `create extension oracle_fdw;`
 
-
+# Install Java
+[How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
