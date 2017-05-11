@@ -1,8 +1,10 @@
 ---
-title: Hexo 背离又回归
+title: 抛弃Hexo又回归
 categories: '看世界|World Eye'
 tags: 
   - hexo
+  - jupyter notebook
+  - jupyter nbconvert
 date: 2016-09-22 00:00:00
 ---
 
@@ -28,39 +30,61 @@ Hexo的系统结构和配置方法，我不算精通，却也基本熟悉了。�
 ## 解决方案
 于是，Hexo，我又回来了，不要嫌弃我！哈哈哈哈！
 
-### 格式转换工具`jupyter nbconvert`
+### 格式转换工具[`jupyter nbconvert`](https://github.com/jupyter/nbconvert)
 而支持jupyter notebook的问题，可以通过jupyter本身的工具[jupyter nbconvert](https://github.com/jupyter/nbconvert)来解决。
 
 只需要一句简单的命令就可以把jupyter notebook转换成markdown文件。
 
 
-```python
-jupyter nbconvert --to <output format> <input notebook>
-jupyter nbconvert --to markdown mynotebook.ipynb
+```shell
+jupyter nbconvert --to <output format> <input notebook> --output-dir <destination path>
+jupyter nbconvert --to markdown mynotebook.ipynb --output-dir /home/katherine/Documents/hexo_blog/source/_posts/
 ```
 
 `jupyter nbconvert`支持以下格式的文件之间的转换：
 `custom`, `html`, `latex`, `markdown`, `notebook`, `pdf`, `python`, `rst`, `script`, `slides`
 
-### 注意事项
+如果不用`--to`参数，则默认转换成html文件。
+
+如果不用`--output-dir`参数，则默认转换成的文件保存在当前目录。
+
+`<input notebook>`可以填写类似`my*.ipynb`的值，则`jupyter nbconvert`会自动转换当前路径下所有以my开头命名的notebook。
+
+`jupyter nbconvert`生成markdown文件时，如果有图片等其他文件输出，会被保存到跟markdown文件同级的名为`<notebook_name>_files`的文件夹下。
+
+### 转为Hexo可处理的形式
+
+#### markdown文件
 
 notebook的命名不要包含中文和空格，以免出现问题。
-    
+
 生成markdown文件后要进行检查。
-Hexo支持的markdown文件，最开头的格式如下，且第一行不能为空。nbconvert貌似帮我自动空了一行，需要手动删掉。也可以在jupyter notebook中先不写这些信息，生成md文件后再补。
-> ---
+Hexo支持的markdown文件，最开头的格式如下，且第一行不能为空行。nbconvert貌似帮我自动空了一行，需要手动删掉。建议在jupyter notebook中先不写这些信息，生成md文件后再补。
+
+> \-------------------
+>
 > title: Hexo 背离又回归
 > categories: '看世界|World Eye'
 > tags: 
->   - hexo
+>
+> \- tag1
+>
+> \- tag2
+>
 > date:
-> ---
-> 
+>
+> \----------------------
 
-生成`new post`后会生成一个md文件，到时候用编辑好的md文件替换即可，不过要注意文件名，要保持与`asset_folder`命名一致。
+
+
+生成`new post`后会生成一个md文件，到时候用编辑好的md文件替换即可。
+
+#### 图片等其他资料文件
 
 生成的图片位置，要手动把图片添加到`/images`文件夹下，而文章里面的图片位置也要手动修改。
-或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为```{% asset_img image_name.png image label %}```即可。
+或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为```{% asset_img <image_name.png> <image> <label> %}```即可。
+
+**即要保证markdown的文件文件名要和同级路径中的asset_folder保持一致。**
 
 好像有点复杂，不过可以完全倚赖Hexo的工具啊。感觉还是棒棒哒！
 

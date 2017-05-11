@@ -28,11 +28,11 @@ Now the program has been run for 3 times.
 
 Following are the results! 
 
-![](/images/OrienteStation_ZH-CN8775637045_1920x1080.jpg)
+{% asset_img OrienteStation_ZH-CN8775637045_1920x1080.jpg image1 %}
 
-![](/images/PerceRock_ZH-CN12739516630_1920x1080.jpg)
+{% asset_img PerceRock_ZH-CN12739516630_1920x1080.jpg image2 %}
 
-![](/images/CanyonlandsNP_ZH-CN12598047863_1920x1080.jpg)
+{% asset_img CanyonlandsNP_ZH-CN12598047863_1920x1080.jpg image3 %}
 
 Look great! Right?  
 

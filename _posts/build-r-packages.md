@@ -2,7 +2,9 @@
 title: Build R Packages
 date: 2016-01-22 16:32:29
 categories: 程序媛|Coding
-tags: [R, package]
+tags: 
+  - R
+  - package
 ---
 After MM and I developed several R tools for our team (missing the whole year we kept working together), we began to look for more convenient way for the users. 
 We were eager to build our own packages, but we didn't know how and didn't dig deep down. 
@@ -24,7 +26,7 @@ After downloading and installing the version of Rtools appropriate to the versio
 To build manuals and vignettes you'll also need to install the **MikTeX LaTeX** distribution for Windows which you can download from here: http://miktex.org/download.
 If you have installed MiKTeX before like me, it is recommended that you [run the update wizard](http://miktex.org/howto/update-miktex) in order to get the latest updates.
 Just go to **Startup** menu. Click **All Programs**. Find **MikTeX** then go to **Maintainence** and click **Update**. 
-![](/images/20160121164233.png)
+{% asset_img 20160121164233.png image1 %}
 Then just click **Next**, **Next** and **Next**. If the first time going by "Selecting packages" it's unable for you to click on "Select All", don't worry, finish the update process and run all the steps once again. 
 
 ## Packages Needed Before Starting
@@ -61,13 +63,13 @@ devtools::install_github("rstudio/packrat")
 ### Project - New Project
 #### Start
 First, we need to create a new project. On the top right corner of the RStudio window, you can find the "Project" button. 
-![](/images/20160120194401.png)
+{% asset_img 20160120194401.png image2 %}
 Then select "New Directory". If you already have some R scripts but not a package yet, you can choose "Existing Directory". 
-![](/images/20160121160957.png)
+{% asset_img 20160121160957.png image3 %}
 Then choose "R Package". *More exploration needed on other two choices.*
-![](/images/20160121161110.png)
+{% asset_img 20160121161110.png image4 %}
 Name your package and tick "Use packrat with this project". 
-![](/images/20160121161436.png)
+{% asset_img 20160121161436.png image5 %}
 After creating a brand new package, RStudio will automatically open a new R script file "hello.R". 
 ```R
 # Hello, world!
@@ -90,10 +92,10 @@ hello <- function() {
 }
 ```
 Under the package working directory, some files are automatically created. All the R scripts the package holds should be saved under the folder "R". 
-![](/images/20160121162047.png)
+{% asset_img 20160121162047.png)
 #### DESCRIPTION
 You can edit the package DESCRIPTION. 
-![](/images/20160121162919.png)
+{% asset_img 20160121162919.png)
 The DESCRIPTION file contains basic information about the package in the following format: 
 ```
 Package: pkgname
@@ -122,16 +124,16 @@ If you use `roxygen2` to generate NAMESPACE automatically like me, you should no
 
 ### Dependent Packages
 You can install other necessary packages in the whole process of building your package. `packrat` can help record the package list and their version information. 
-![](/images/20160122115721.png)
+{% asset_img 20160122115721.png image6 %}
 #### Snapshot
 When you just install a packge, the "Version" and the "Source" column may have information while the "Packrat" column may be empty. The action of `packrat` saving information is called `snapshot`. 
 Though I choose to "Automatically snapshot local changes" in Packrat "Project Options", I don't see the effect after waiting for a whole night ;P 
-![](/images/20160122115826.png)
+{% asset_img 20160122115826.png image7 %}
 If so, you could manually snapshot by `packrat::snapshot()`. 
 #### Remove Packages
 If you find some packages unused, you can just use `remove.packages("unused package name")`. 
 Or you can just let packrat to handle it. Click "Clean Unused Packages..." and `packrat` begins working. 
-![](/images/20160122120100.png)
+{% asset_img 20160122120100.png image8 %}
 #### Restore
 If you change the package information by mistake, you can use `packrat::restore()` to restore the packrat library to the latest snapshot. 
 
@@ -160,9 +162,9 @@ average <- function(x, ...){
 ### Build
 Before asking RStudio to do the "Build" work, go to "Configure Build Tools" and tick "Generate documentation with Roxygen" and all inside choices.
 This can make all your `#' ` sentences work and create `.Rd` files under folder `man` automatically. You could also not use Roxygen and create `.Rd` files by yourself. 
-![](/images/20160122135403.png)
-![](/images/20160122151841.png)
-![](/images/20160122152145.png)
+{% asset_img 20160122135403.png image9 %}
+{% asset_img 20160122151841.png image10 %}
+{% asset_img 20160122152145.png image11 %}
 #### Check
 RStudio will check if your package can work well and print out all the warnings, undocumented arguments, no visible global function definition, etc. 
 After the check finishes, read the information carefully and review your code. 
@@ -173,7 +175,7 @@ hello()
 average(1:5)
 ```
 Try `?average` and see the documention built by Roxygen. 
-![](/images/20160122160341.png)
+{% asset_img 20160122160341.png)
 If now error occurs as below, but you're quite sure that the `otherpackage` is installed and works well.  
 ```
 ==> devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
@@ -186,7 +188,7 @@ Calls: suppressPackageStartupMessages ... <Anonymous> -> load_all -> load_depend
 Execution halted
 ```
 Try unselecting the circled option in "Project Options" > "Build Tools" dialogue solves this problem, although I'm not quite clear on why: 
-![](/images/20160125164446.png)
+{% asset_img 20160125164446.png image12 %}
 #### More - Build Source Package & Build Binary Package
 "Build Source Package" can output a *.tar.gz file; while "Build Binary Package" can output a *.zip file. 
 Then it's very convenient to share your package. After the user recieve the file, they can go straight to use your packge! 
