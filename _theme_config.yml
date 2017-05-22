@@ -207,11 +207,19 @@ sidebar:
 
 # Blog rolls
 links_title: Links
-#links_layout: block
+links_layout: block
 #links_layout: inline
 links:
   二师兄: http://papacochon.com/
-  Exolution: https://junjiecai.github.io/
+  师父: https://junjiecai.github.io/
+  白龙马: https://mjp1124.github.io/
+
+
+# 打赏功能
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay: /images/wechatpay.png
+alipay: /images/alipay.jpg
+
 
 
 # ---------------------------------------------------------------
@@ -279,7 +287,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night eighties
+highlight_theme: normal
 
 
 # ---------------------------------------------------------------
