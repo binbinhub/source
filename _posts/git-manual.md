@@ -3,6 +3,7 @@ title: Git Manual
 tags: git
 categories: 程序媛|Coding
 date: 2016-09-13 19:13:11
+updated: 2017-05-25 17:30:00
 ---
 
 
@@ -11,21 +12,69 @@ This article is an incomplete manual for the beginnners.
 In fact, now I still cannot understand the work of `git` very well. Just hope to learn more when using more.
 
 <!--more-->
-## Personal notes
+## Intro
+Git is a local version control tool to help users, whether the user is a programmer of a writer, to manage the contents and changes in **text files**. 
+If you would like to have a backup remotely, you could use [Github](https://github.com/) to save your work on the remote repo. 
+
+## Install
+If you use Ubuntu, `apt-get` could be used to install git. 
+```bash
+sudo apt-get install git git-core
+```
+
+## Work Locally
 
 ### Build local repository
 
-#### Method 1
-
-Create a new folder to hold the clone files, then: 
+To create a new folder to hold the clone files, or you already have some work to track, you can use: : 
 
 ```bash
 git init
 ```
 The system show: 
 ```
-Initialized empty Git repository in /home/katherine/Hexo/source/.git/
+Initialized empty Git repository in /<file_dir>/.git/
 ```
+### Track the work
+
+After initialization, after some work, use
+```bash
+git add <file path and name>
+```
+to add the specific file to the track; use
+```bash
+git add .
+```
+or
+```bash
+git add --all
+```
+to add all changed files to the track. 
+
+### `.gitignore`
+If some specific type of files are not needed to track all the time, they can be added to the `.gitignore` file. Just create a file named `.gitignore` and then add the file types or names not necessary to track as the following. Then git will automatically ignore the files listed in the `.gitignore` file. 
+```
+*.csv # all the csv files
+...
+```
+
+### commit
+```bash
+git commit -m '<name the commit yourself>'
+```
+
+### Check the status
+```bash
+git status
+```
+
+### Check the history
+
+```bash
+git log
+```
+
+## Work with the Remote Repo
 
 Then:
 ```bash
@@ -43,16 +92,17 @@ git remote add origin https://github.com/monkey0105/source.git
 
 Just use `git clone`, and `git` will create a new folder to hold the clone files for you.
 ```bash
-git clone git://github.com/monkey0105/source.git --branch master
+git clone git://github.com/monkey0105/source.git --branch <branch> <directory name>
 ```
 
+`--branch <branch>` can specify the branch you want. if no branch is specified, the default branch would be `master`.
+
+`<directory name>` can specify the place you want to put the repo. if no directory name is specified, the name of the repo would be used as the folder's name. 
 
 ### Update the remote repository
+
 After do some changes, `commit` and `push` to the remote repository.
-```bash
-git add .
-git commit -m 'name the commit yourself'
-```
+
 
 Then:
 ```bash
@@ -76,5 +126,5 @@ git checkout dev
 
 ## References 
 
-A helpful tutorial [Pro Git](http://iissnan.com/progit/index.html), translated and editted by the author of theme [`Next`](https://github.com/iissnan/hexo-theme-next). 
+* A helpful tutorial [Pro Git](http://iissnan.com/progit/index.html), translated and editted by the author of theme [`Next`](https://github.com/iissnan/hexo-theme-next). 
 
