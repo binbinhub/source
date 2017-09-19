@@ -82,3 +82,9 @@ algolia:
   adminApiKey: 4a3ba9bfcbd2c56c212c2b24b4a01e9a
   indexName: hexo_blog
   chunkSize: 5000
+
+# prevent multi blank lines in front of tables
+# https://github.com/hexojs/hexo/issues/1388
+marked:
+  gfm: true
+  breaks: false

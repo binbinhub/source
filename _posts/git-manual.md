@@ -2,8 +2,7 @@
 title: Git Manual
 tags: git
 categories: 程序媛|Coding
-date: 2016-09-13 19:13:11
-updated: 2017-05-25 17:30:00
+date: 2017-08-09 14:30:00
 ---
 
 As coding more and more, `git` becomes a must-use tool to save the codes and control versions. 
@@ -179,12 +178,90 @@ git merge <branch name 2>
    upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
    ```
 
-# Revert vs. Reset
+5. Fetch the branches and their respective commits from the upstream repository. Commits to `master` will be stored in a local branch, `upstream/master`.
 
-Never delete actions which have been already pushed.
+   ```bash
+   git fetch upstream
+   remote: Counting objects: 75, done.
+   remote: Compressing objects: 100% (53/53), done.
+   remote: Total 62 (delta 27), reused 44 (delta 9)
+   Unpacking objects: 100% (62/62), done.
+   From https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY
+    * [new branch]      master     -> upstream/master
+
+   ```
+
+6. Check out your fork's local `master` branch.
+
+   ```bash
+   git checkout master
+   Switched to branch 'master'
+
+   ```
+
+7. Merge the changes from `upstream/master` into your local `master` branch. This brings your fork's `master` branch into sync with the upstream repository, without losing your local changes.
+
+   ```bash
+   git merge upstream/master
+   Updating a422352..5fdff0f
+   Fast-forward
+    README                    |    9 -------
+    README.md                 |    7 ++++++
+    2 files changed, 7 insertions(+), 9 deletions(-)
+    delete mode 100644 README
+    create mode 100644 README.md
+
+   ```
+
+   If your local branch didn't have any unique commits, Git will instead perform a "fast-forward":
+
+   ```bash
+   git merge upstream/master
+   Updating 34e91da..16c56ad
+   Fast-forward
+    README.md                 |    5 +++--
+    1 file changed, 3 insertions(+), 2 deletions(-)
+
+   ```
+
+8. **Syncing your fork only updates your local copy of the repository. To update your fork on GitHub, you must [push your changes](https://help.github.com/articles/pushing-to-a-remote).**
+
+# Cancel or Edit Commit in Private Branches
+
+Never reset/rebase actions which have been made in **public** branches.
+
+> Once you understand what rebasing is, the most important thing to learn is when *not* to do it. 
+>
+> The golden rule of `git rebase` is to never use it on *public* branches.
+
+## Revert, Reset & Checkout Usage in Commit & File Level
+
+Below is the summary. Detail article can be found in [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting). 
+
+| Command      | Scope        | Common use cases                         |
+| ------------ | ------------ | ---------------------------------------- |
+| git reset    | Commit-level | Discard commits in a private branch or throw away uncommited changes |
+| git reset    | File-level   | Unstage a file                           |
+| git checkout | Commit-level | Switch between branches or inspect old snapshots |
+| git checkout | File-level   | Discard changes in the working directory |
+| git revert   | Commit-level | Undo commits in a public branch          |
+| git revert   | File-level   | -                                        |
+
+
+
+## Merging vs. Rebasing
+
+You can find detailed explanation [here](https://www.atlassian.com/git/tutorials/merging-vs-rebasing). 
+
+If you would prefer a clean, linear history free of unnecessary merge commits, you should reach for `git rebase`instead of `git merge` when integrating changes from another branch.
+
+On the other hand, if you want to preserve the complete history of your project and avoid the risk of re-writing public commits, you can stick with `git merge`. Either option is perfectly valid, but at least now you have the option of leveraging the benefits of `git rebase`.
 
 # References 
 
-* A helpful tutorial [Pro Git](http://iissnan.com/progit/index.html), translated and edited by the author of theme [`Next`](https://github.com/iissnan/hexo-theme-next). 
+* A helpful tutorial Pro Git
+  * https://git-scm.com/book/zh/v2
+  * http://iissnan.com/progit/index.html
 * [GitHub Help](https://help.github.com/)
+* [A Git Tutorial Powered by Atlassian](https://www.atlassian.com/git/tutorials)
 
