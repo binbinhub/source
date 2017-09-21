@@ -2,7 +2,9 @@
 title: Hello World
 date: 2015-12-29 16:52:09
 categories: 拿来主义|Copinism
-tags: [Hexo, markdown]
+tags: 
+  - Hexo
+  - markdown
 ---
 Just keep this post as a memo about Hexo, markdown gramma, etc. 
 
