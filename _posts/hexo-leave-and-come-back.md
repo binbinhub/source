@@ -63,15 +63,15 @@ Hexo支持的markdown文件，最开头的格式如下，且第一行不能为�
 
 > \-------------------
 >
-> title: Hexo 背离又回归
-> categories: '看世界|World Eye'
-> tags: 
+> title: Hexo 背离又回归  
+> categories: '看世界|World Eye'  
+> tags:   
 >
 > \- tag1
 >
 > \- tag2
 >
-> date:
+> date:  
 >
 > \----------------------
 
@@ -82,7 +82,7 @@ Hexo支持的markdown文件，最开头的格式如下，且第一行不能为�
 #### 图片等其他资料文件
 
 生成的图片位置，要手动把图片添加到`/images`文件夹下，而文章里面的图片位置也要手动修改。
-或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为```{% asset_img <image_name.png> <image> <label> %}```即可。
+或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为**`{% asset_img <image_name.png> <image> <label> %}`**即可。
 
 **即要保证markdown的文件文件名要和同级路径中的asset_folder保持一致。**
 
