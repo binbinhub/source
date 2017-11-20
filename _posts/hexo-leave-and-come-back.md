@@ -82,11 +82,19 @@ Hexo支持的markdown文件，最开头的格式如下，且第一行不能为�
 #### 图片等其他资料文件
 
 生成的图片位置，要手动把图片添加到`/images`文件夹下，而文章里面的图片位置也要手动修改。
-或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为**`{% asset_img <image_name.png> <image> <label> %}`**即可。
+或者在站点配置文件中设置`post_asset_folder: true`，这样在每个post生成后，还会相对应地生成一个和md文件名相同的文件夹，把图片放进去后，把md文件中`![image label](/path/to/image_name.png)`改为**`{% asset_img <image_name.png> <image_label> %}`**即可。
 
 **即要保证markdown的文件文件名要和同级路径中的asset_folder保持一致。**
 
 好像有点复杂，不过可以完全倚赖Hexo的工具啊。感觉还是棒棒哒！
+
+**20171120更新**  
+在新的一篇blog中，我只是需要插入两张图片，然而用上述方法，只能正确显示第二张图片，第一张图片Hexo就把`{% asset_img <image_name.png> <image_label> %}`当做普通文本一样，而并没有正确显示图片。检查并尝试多次还是不行。
+
+搜索到CodeFalling写的一个[小工具](https://github.com/CodeFalling/hexo-asset-image)，安装后还是把图片保存在与md文件同名的资源文件夹中，然后只要使用markdown原生的语法`![image_label](image_name.png)`就可以使图片正常显示了。既方便了图片的管理，也方便了图片的使用。安装方法很简单：
+```bash
+npm install hexo-asset-image --save
+```
 
 ### 测试
 这里，我们还要测试一下包含python代码的notebook转换成md文件后，还能否正常显示。
@@ -118,5 +126,5 @@ for ax, s in zip(axes.flat, np.linspace(0, 3, 10)):
 f.tight_layout()
 ```
 
-{% asset_img hexo-leave-and-come-back_11_0.png 测试seaborn等高线图的显示 %}
+![测试seaborn等高线图的显示](hexo-leave-and-come-back_11_0.png)
 

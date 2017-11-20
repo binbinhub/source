@@ -15,6 +15,8 @@ And the initial Quora post is: [As a programmer, what tasks have you automated t
 
 One engineer just mentioned he wrote a small program to download [Bing](http://cn.bing.com/) background images everyday automatically by the computer. The images, which would be a new one everyday, are all great photographs token all over the world.  
 
+后来再尝试代码发现不行了。。。 2017.10
+
 <!--more-->
 
 Recently, I start learning and using Python in my work. And I heard a lot about Python's fantastic functionality in collecting data from the Internet.  
@@ -28,11 +30,11 @@ Now the program has been run for 3 times.
 
 Following are the results! 
 
-{% asset_img OrienteStation_ZH-CN8775637045_1920x1080.jpg image1 %}
+![](OrienteStation_ZH-CN8775637045_1920x1080.jpg)
 
-{% asset_img PerceRock_ZH-CN12739516630_1920x1080.jpg image2 %}
+![](PerceRock_ZH-CN12739516630_1920x1080.jpg)
 
-{% asset_img CanyonlandsNP_ZH-CN12598047863_1920x1080.jpg image3 %}
+![](CanyonlandsNP_ZH-CN12598047863_1920x1080.jpg)
 
 Look great! Right?  
 

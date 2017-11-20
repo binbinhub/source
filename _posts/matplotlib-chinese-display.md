@@ -137,7 +137,7 @@ savefig('test')
 show()
 ```
 
-{% asset_img output_14_0.png %}
+![](output_14_0.png)
 
 ## Appendix
 ### Method 1 - failed
@@ -158,7 +158,7 @@ plt.ylabel(u'Y坐标')
 plt.show() 
 ```
 
-{% asset_img output_16_0.png %}
+![](output_16_0.png)
 
 
 
@@ -176,7 +176,7 @@ plt.ylabel(u'Y坐标')
 plt.show() 
 ```
 
-{% asset_img output_17_0.png %}
+![](output_17_0.png)
 
 
 ### Method 2 - succeeded, but annoyed, and cannot do anything with axis tick label
@@ -195,7 +195,7 @@ plt.ylabel(u'Y坐标',fontproperties=myfont)
 plt.show() 
 ```
 
-{% asset_img output_19_0.png %}
+![](output_19_0.png)
 
 
 ### Method in Seaborn

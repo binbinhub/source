@@ -27,7 +27,7 @@ from premailer import transform
 可添加邮件附件。  
 具体限制根据不同的邮箱服务器而有所不同，最好在正式邮件发送前多进行测试。  
 
-
+调用函数时需要的参数信息：
 ```python
 send_mail(
     from_addr='<发送的邮箱地址>', 
@@ -46,7 +46,7 @@ send_mail(
 )
 ```
 
-
+函数定义如下：
 ```python
 def send_mail(
     from_addr, 
@@ -69,24 +69,22 @@ def send_mail(
     attachments = attachments or []    
     to_all_addr = to_addr+cc_addr+bcc_addr
 
-
+    # 将styles和html_text渲染在一起
     html_text = transform(styles+html_text)
 
     # Create the root message and fill in the from, to, and subject headers
     msgRoot = MIMEMultipart('related')
     msgRoot['Subject'] = subject
-
-    # We reference the image in the IMG SRC attribute by the ID we give it below
+    
     msgText = MIMEText(html_text, 'html')
-
     msgRoot.attach(msgText)
-
 
     msgRoot.add_header('From',from_addr)
     msgRoot.add_header('To', ",".join(to_addr))
     msgRoot.add_header('Cc', ",".join(cc_addr))
     msgRoot.add_header('Bcc', ",".join(bcc_addr))
-
+	
+    # We reference the image in the IMG SRC attribute by the ID we give it below
     # This example assumes the image is in the current directory
     for cid, path in local_images.items():
         fp = open(path, 'rb')
@@ -110,7 +108,7 @@ def send_mail(
     import smtplib
     smtp = smtplib.SMTP()
     smtp.connect(smtp_server, smtp_port)
-#     smtp = smtplib.SMTP_SSL(smtp_server, smtp_port)
+    # smtp = smtplib.SMTP_SSL(smtp_server, smtp_port)
     
     smtp.login(from_addr, password)
     smtp.sendmail(from_addr, to_all_addr, msgRoot.as_string())
@@ -135,40 +133,11 @@ smtp = smtplib.SMTP_SSL(smtp_server, smtp_port)
 此外，还需要把`smtp_server`填充为`‘smtp.qq.com'`，`smtp_port`填写为`465`。
 
 设置部分截图如下：
-{% asset_img image_001.png QQ邮箱设置 %}
 
-# 函数调用&html styles应用
+![QQ邮箱设置](image_003.png)
 
-下面是网上搜到的比较和谐的一款style。
-```python
-styles = '''
-<style>
-    table {
-        background:#87ceeb;
-        color: #333; /* Lighten up font color */
-        font-family: Helvetica, Arial, sans-serif; /* Nicer font */
-        width: 640px;
-        border-collapse:
-        collapse; border-spacing: 0;
-    }
+# 函数调用 & html styles 应用
 
-   td, th { border: 1px solid #CCC; height: 30px; } /* Make cells a bit taller */
-
-   th {
-        background: #F3F3F3; /* Light grey background */
-        font-weight: bold; /* Make sure they're bold */
-    }
-   td {
-        /*background: #FAFAFA;  Lighter grey background */
-        text-align: center; /* Center our text */
-    }
-   .odd>td { background: #FEFEFE;}
-   .even>td { background: #F1F1F1;}
-
-</style>
-
-'''
-```
 
 `.py`文件与`muban`文件夹平级，以下`.html`模板文件都存在`muban`文件夹下。  
 一般运行代码时可选择相对路径引用，如下所示。不过碰到在docker中运行时只能用绝对路径的情况。
@@ -252,6 +221,37 @@ email_list.append(header)
 email_list.extend(input_df.to_records())
 html_text = table_template.render(data=email_list)
 ```
+再在以上函数中引入如下styles：
+
+```python
+styles = '''
+<style>
+    table {
+        background:#87ceeb;
+        color: #333; /* Lighten up font color */
+        font-family: Helvetica, Arial, sans-serif; /* Nicer font */
+        width: 640px;
+        border-collapse:
+        collapse; border-spacing: 0;
+    }
+
+   td, th { border: 1px solid #CCC; height: 30px; } /* Make cells a bit taller */
+
+   th {
+        background: #F3F3F3; /* Light grey background */
+        font-weight: bold; /* Make sure they're bold */
+    }
+   td {
+        /*background: #FAFAFA;  Lighter grey background */
+        text-align: center; /* Center our text */
+    }
+   .odd>td { background: #FEFEFE;}
+   .even>td { background: #F1F1F1;}
+
+</style>
+
+'''
+```
 
 应用在如下`pd.DataFrame`上，可得到下面的显示效果（不同邮箱系统可能会存在差异）。
 
@@ -304,8 +304,7 @@ input_df
 </div>
 
 
-
-{% asset_img image_002.png 表格显示效果 %}
+![表格显示效果](image_002.png)
 
 ## 插入图片
 
